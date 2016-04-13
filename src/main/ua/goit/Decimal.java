@@ -1,3 +1,5 @@
+package main.ua.goit;
+
 import java.util.*;
 
 public class Decimal {

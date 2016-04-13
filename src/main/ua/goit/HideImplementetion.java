@@ -1,3 +1,5 @@
+package main.ua.goit;
+
 public class HideImplementetion {
 
     private Decimal decimal = new Decimal();
