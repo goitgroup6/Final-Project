@@ -4,11 +4,7 @@ import java.util.*;
 
 public class Decimal {
 
-    // Нужно (было бы неплохо) сделать:
-    //      1. Ограничить диапазон ответа если введённое число слишком большое (выводит неправильно значение)
-    //      2. Ограничить ввод числами от 0 до 9 и цифрами A B C D E F
-    //      3. Добавить минус перед значением если введённое число отрицательное
-    //      4.** Добавить вычисление с плавающей точкой
+    //      1. Ограничить ввод
 
     private Map<Character, Integer> map;
 
@@ -23,21 +19,19 @@ public class Decimal {
         }
     }
 
-    // Перевод любой системы с 2 до 16 в десятичную
     public int ToDecimal(String number, int system) {
 
-        // Разбиваем строку на символы и создаём массив Integer
         List<Integer> arrayInt = new ArrayList<>();
+        CheckInputNumber check = new CheckInputNumber();
+
         for (int i = 0; i < number.length(); i++) {
             char symbol = number.charAt(i);
             for (Map.Entry<Character, Integer> c : map.entrySet()) {
-                if (symbol == c.getKey()) {
+                if (symbol == c.getKey() && check.checkNumber(c.getValue(), system) && check.filterNumber(number)) {
                     arrayInt.add(c.getValue());
                 }
             }
         }
-
-        // Переводим систему в десятичную
         Collections.reverse(arrayInt);
         int sum = 0;
         for (int i = 0; i < arrayInt.size(); i++) {
@@ -46,9 +40,7 @@ public class Decimal {
         return sum;
     }
 
-    // Перевод из десятичной в любую выбранную систему с 2 до 16
     public String DecimalTo(int number, int system) {
-
         List<String> array = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -61,9 +53,7 @@ public class Decimal {
             }
             number /= system;
         }
-
-        Collections.reverse(array);
         array.forEach(stringBuilder::append);
-        return stringBuilder.toString();
+            return stringBuilder.reverse().toString();
     }
 }
