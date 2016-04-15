@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     static int system;
+    static String tempResult;
 
     public static void main(String[] args) {
 
@@ -29,10 +30,14 @@ public class Main {
         }
 
         //Перевод в двоичную систему и вывод результата
-        String res1 = Converter.toBinary(inputNumber, system);
-        System.out.println("Переводим в двоичную = " + res1);
+        try {
+            tempResult = Converter.toBinary(inputNumber, system);
+        } catch (Exception e){
+            return;
+        }
+        System.out.println("Переводим в двоичную = " + tempResult);
 
         //Перевод из двоичной системы в исходную и вывод результата
-        System.out.println("Переводим назад из двоичной = " + Converter.fromBinary( res1 ,system));
+        System.out.println("Переводим назад из двоичной = " + Converter.fromBinary( tempResult ,system));
     }
 }
