@@ -3,34 +3,36 @@ package main.ua.goit;
 import java.util.Scanner;
 
 public class Main {
+
+    static int system;
+
     public static void main(String[] args) {
 
         //Ввод входящего значения
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Введите число");
         String inputNumber = scanner.nextLine();
 
-        System.out.println("В какой системе это число");
-        Integer system = scanner.nextInt();
+        do {
+            System.out.println("Введите систему числа (1..16)");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Не верное число!");
+                scanner.next();
+            }
+            system = scanner.nextInt();
+        } while (system <= 0 || system > 16 );
+
+        if ( !Converter.isValidValue(inputNumber, system)) {
+            System.out.println("Введенное число не соответствует системе исчисления");
+            return;
+        }
 
         //Перевод в двоичную систему и вывод результата
-
-        //старая реализация, не менять, УДАЛИТЬ
-        String result = HideImplementation.ToBinary(inputNumber,system);
-        System.out.println(result);
-        //старая реализация, не менять, УДАЛИТЬ
-
-        //check
         String res1 = Converter.toBinary(inputNumber, system);
-        System.out.println("Converter.toBinary(" + inputNumber + ")=" + res1);
+        System.out.println("Переводим в двоичную = " + res1);
 
         //Перевод из двоичной системы в исходную и вывод результата
-        System.out.println("Переводим назад из двоичной");
-
-        System.out.println("Converter.fromBinary(" + res1 + ")=" + Converter.fromBinary( res1 ,system));
-
-        //старая реализация, не менять, УДАЛИТЬ
-        System.out.println(HideImplementation.BinaryTo(result,system));
-        //старая реализация, не менять, УДАЛИТЬ
+        System.out.println("Переводим назад из двоичной = " + Converter.fromBinary( res1 ,system));
     }
 }
