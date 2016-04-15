@@ -9,7 +9,7 @@ public class Converter {
 //        {'0', 0}, {'1', 1}, {'2', 2}, {'3', 3}, {'4', 4}, {'5', 5}, {'6', 6}, {'7', 7}, {'8', 8}, {'9', 9}, {'A', 10}, {'B', 11}, {'C', 12}, {'D', 13}, {'E', 14}, {'F', 15}}
 //    ).collect(Collectors.toMap(kv -> (Character) kv[0], kv -> (Integer) kv[1]));
 
-    private static final List<Character> VALID_CHARS = Arrays.asList('0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f');
+    private static final List<Character> VALID_CHARS = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
     //MAP - таблица преобразования строкового представления чисел в десятичную систему
     private static final HashMap<Character, Integer> MAP = new HashMap<>();
@@ -22,34 +22,39 @@ public class Converter {
         //VALID_CHARS.forEach(sym -> MAP.put(sym, VALID_CHARS.indexOf(sym)) );
 
         for (Character sym : VALID_CHARS) MAP_INV.put(VALID_CHARS.indexOf(sym), sym);
-
     }
 
     // Проверка корректности строки ввода
-    public static boolean isValidValue(String param){
+    public static boolean isValidValue(String param, Integer base) {
         //return Arrays.asList(param).forEach( s -> VALID_CHARS.contains(s));
+
+        for(Character s : param.toCharArray()){
+            if (!VALID_CHARS.contains(s) || MAP.get(s) >= base) return false;
+        }
+
         return true;
     }
 
-    public static Integer toDecimal(String value, Integer base){
+    public static Integer toDecimal(String value, Integer base) {
 
         Integer result = 0;
 
         List<Integer> arrayInt = new ArrayList<>();
 
         // Разбиваем строку на символы и заполняем массив Integer значениями из MAP
-        for (Character sym: value.toLowerCase().toCharArray()) arrayInt.add(MAP.get(sym));
+        for (Character sym : value.toLowerCase().toCharArray()) arrayInt.add(MAP.get(sym));
 
         //Меняем последовательность элементов массива последний - первый
         Collections.reverse(arrayInt);
 
         //переводим в десятичное число
-        for (Integer dig : arrayInt) result += dig * (int) Math.pow(base, arrayInt.indexOf(dig));
+        int i = 0;
+        for (Integer dig : arrayInt) result += dig * (int) Math.pow(base, i++);
 
         return result;
     }
 
-    public static String DecimalTo(Integer value, Integer base){
+    public static String DecimalTo(Integer value, Integer base) {
 
         String result = "";
 
@@ -62,21 +67,21 @@ public class Converter {
 
         Collections.reverse(array);
 
-        for( Character s:array) result+=(s.toString());
+        for (Character s : array) result += (s.toString());
 
         return result;
     }
 
     //Method converts any value to binary
     //Метод конвертирует любое значение в двоичное
-    public static String toBinary(String value, Integer base){
-        return DecimalTo(toDecimal(value,base),2);
+    public static String toBinary(String value, Integer base) {
+        return DecimalTo(toDecimal(value, base), 2);
     }
 
     //Method converts binary to any value
     //Метод конвертирует двоичное значение в любое число
-    public static String fromBinary(String value, Integer base){
-        return DecimalTo(toDecimal(value,2),base);
+    public static String fromBinary(String value, Integer base) {
+        return DecimalTo(toDecimal(value, 2), base);
     }
 
 
