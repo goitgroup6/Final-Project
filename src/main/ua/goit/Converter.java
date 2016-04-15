@@ -24,6 +24,11 @@ public class Converter {
         for (Character sym : VALID_CHARS) MAP_INV.put(VALID_CHARS.indexOf(sym), sym);
     }
 
+    public static boolean isValueInBound(String param, Integer base){
+
+        return true;
+    }
+
     // Проверка корректности строки ввода
     public static boolean isValidValue(String param, Integer base) {
         //return Arrays.asList(param).forEach( s -> VALID_CHARS.contains(s));
@@ -67,7 +72,12 @@ public class Converter {
 
         Collections.reverse(array);
 
-        for (Character s : array) result += (s.toString());
+        try {
+            for (Character s : array) result += (s.toString());
+        } catch (Exception e) {
+            System.out.println("Введенное число слишком большое!");
+            throw new NullPointerException();
+        }
 
         return result;
     }
