@@ -23,7 +23,7 @@ public class InputHelper {
             }
             system = Integer.parseInt(enteredValue);
         } catch (Exception e) {
-            System.out.println("[ERROR]: " + e);
+            System.out.println("[ERROR]: " + e.getMessage());
         }
 
         return system;
@@ -41,7 +41,7 @@ public class InputHelper {
                 enteredValue = scanner.nextLine();
             }
         } catch (Exception e) {
-            System.out.println("[ERROR]: " + e);
+            System.out.println("[ERROR]: " + e.getMessage());
         }
 
         return enteredValue;
@@ -74,7 +74,7 @@ public class InputHelper {
             for (char character : enteredString.toCharArray()) sum += Character.getNumericValue(character);
             if (sum == 0) result = false;
         } catch (Exception e) {
-            System.out.println("[ERROR]: " + e);
+            System.out.println("[ERROR]: " + e.getMessage());
         }
 
         return result;
