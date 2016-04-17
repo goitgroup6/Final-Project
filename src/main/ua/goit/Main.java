@@ -6,7 +6,7 @@ public class Main {
 
         // Enter number & system
         Integer system = InputHelper.enterSystem();
-        String number = InputHelper.enterNumber();
+        String number = InputHelper.enterNumber(system);
 
         // Convert number to binary
         String binaryNumber = Converter.toBinary(number, system);
