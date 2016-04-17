@@ -13,6 +13,7 @@ public class ConverterTest {
         String number2 = "1F";
         Integer system1 = 10;
         Integer system2 = 16;
+
         String expected1 = "1100100";
         String expected2 = "11111";
 
@@ -29,6 +30,7 @@ public class ConverterTest {
         String binaryNumber2 = "11111";
         Integer system1 = 10;
         Integer system2 = 16;
+
         String expected1 = "10";
         String expected2 = "1f";
 
@@ -45,6 +47,7 @@ public class ConverterTest {
         String number2 = "1f";
         Integer system1 = 2;
         Integer system2 = 16;
+
         Integer expected1 = 9;
         Integer expected2 = 31;
 
@@ -61,6 +64,7 @@ public class ConverterTest {
         Integer decimalNumber2 = 10;
         Integer system1 = 16;
         Integer system2 = 2;
+
         String expected1 = "1f";
         String expected2 = "1010";
 

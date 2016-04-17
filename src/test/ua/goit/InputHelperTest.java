@@ -14,6 +14,8 @@ public class InputHelperTest {
         String system3 = "17";
         String system4 = "2";
         String system5 = "0";
+        String system6  = "R";
+
         boolean expectedTrue = true;
         boolean expectedFalse = false;
 
@@ -22,12 +24,14 @@ public class InputHelperTest {
         boolean result3 = InputHelper.isSystemValid(system3);
         boolean result4 = InputHelper.isSystemValid(system4);
         boolean result5 = InputHelper.isSystemValid(system5);
+        boolean result6 = InputHelper.isSystemValid(system6);
 
         assertEquals(expectedTrue, result1);
         assertEquals(expectedTrue, result2);
         assertEquals(expectedFalse, result3);
         assertEquals(expectedFalse, result4);
         assertEquals(expectedFalse, result5);
+        assertEquals(expectedFalse, result6);
     }
 
     @Test
@@ -37,11 +41,13 @@ public class InputHelperTest {
         String number3 = "0";
         String number4 = "-10";
         String number5 = "1f";
+
         int system1 = 10;
         int system2 = 16;
         int system3 = 10;
         int system4 = 10;
         int system5 = 10;
+
         boolean expectedTrue = true;
         boolean expectedFalse = false;
 
