@@ -23,25 +23,25 @@ public class InputHelper {
             }
             system = Integer.parseInt(enteredValue);
         } catch (Exception e) {
-            System.out.println("[ERROR]: " + e.getMessage());
+            System.out.println("[ERROR]: " + e);
         }
 
         return system;
     }
 
     // Enter number
-    public static String enterNumber() {
+    public static String enterNumber(Integer system) {
         String enteredValue = null;
         try {
             String inputNumberText = "Введите позитивное число в выбранной системе:";
             System.out.println(inputNumberText);
             enteredValue = scanner.nextLine();
-            while (!isNumberValid(enteredValue)) {
+            while (!isNumberValid(enteredValue, system)) {
                 System.out.println("Невалидное число.\n" + inputNumberText);
                 enteredValue = scanner.nextLine();
             }
         } catch (Exception e) {
-            System.out.println("[ERROR]: " + e.getMessage());
+            System.out.println("[ERROR]: " + e);
         }
 
         return enteredValue;
@@ -61,11 +61,20 @@ public class InputHelper {
     }
 
     // Check number
-    public static boolean isNumberValid(String enteredValue) {
+    public static boolean isNumberValid(String enteredString, int system) {
         boolean result = true;
-        String acceptableChars = "0123456789abcdef";
-        for (Character enteredChar : enteredValue.toCharArray()) {
-            if (!acceptableChars.contains(enteredChar.toString().toLowerCase())) result = false;
+        try {
+            String acceptableChars = "0123456789abcdef";
+            for (Character enteredChar : enteredString.toCharArray()) {
+                String symbol = enteredChar.toString().toLowerCase();
+                if (!acceptableChars.substring(0, system).contains(symbol)) result = false;
+            }
+            // Check that number not consists of zeros
+            int sum = 0;
+            for (char character : enteredString.toCharArray()) sum += Character.getNumericValue(character);
+            if (sum == 0) result = false;
+        } catch (Exception e) {
+            System.out.println("[ERROR]: " + e);
         }
 
         return result;
