@@ -33,7 +33,7 @@ public class InputHelper {
     public static String enterNumber(Integer system) {
         String enteredValue = null;
         try {
-            String inputNumberText = "Введите позитивное число в выбранной системе:";
+            String inputNumberText = "Введите позитивное целое число в выбранной системе:";
             System.out.println(inputNumberText);
             enteredValue = scanner.nextLine();
             while (!isNumberValid(enteredValue, system)) {
