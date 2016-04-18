@@ -78,7 +78,7 @@ public class Converter {
             List<Character> resultNumberChars = new ArrayList<>();
             while (decimalNumber != 0) {
                 resultNumberChars.add(indexesAndValidChars.get(decimalNumber % system));
-                decimalNumber /= system;
+                decimalNumber = decimalNumber /system;
             }
             Collections.reverse(resultNumberChars);
             // Convert result number chars list to string
