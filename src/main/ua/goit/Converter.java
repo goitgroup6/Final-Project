@@ -57,6 +57,7 @@ public class Converter {
 
     // Converts from decimal to any system
     private static String decimalTo(Integer decimalNumber, Integer system) {
+        final String MAX_BINARY_VALUE = "1111111111111111111111111111111";
         String result = "";
         HashMap<Integer, Character> indexesAndValidChars = new HashMap<>();
         for (Character validSymbol : VALID_CHARS)
@@ -68,7 +69,7 @@ public class Converter {
         }
         Collections.reverse(resultNumberChars);
         for (Character s : resultNumberChars) result += (s.toString());
-        if (result.equals("1111111111111111111111111111111")) {
+        if (result.equals(MAX_BINARY_VALUE)) {
             throw new NumberFormatException("Слишком большое число");
         }
         return result;
