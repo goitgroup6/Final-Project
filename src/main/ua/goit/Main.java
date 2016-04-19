@@ -17,9 +17,9 @@ public class Main {
             String systemNumber = Converter.fromBinary(binaryNumber, system);
             System.out.println("Переводим обратно в " + system + "-ю = " + systemNumber);
         } catch (NumberFormatException npe) {
-            System.out.println("Слишком большое число");
+            System.out.println("[ERROR]: Слишком большое число");
         } catch (Exception e) {
-            System.out.println("[ERROR MAIN]" + e);
+            System.out.println("[ERROR]: "+e.getMessage());
         }
     }
 }

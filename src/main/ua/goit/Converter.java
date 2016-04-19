@@ -46,7 +46,7 @@ public class Converter {
         Collections.reverse(listOfCharsIndexes);
         int i = 0;
         for (Integer index : listOfCharsIndexes) {
-            result +=index * Math.pow(system, i++);
+            result += index * Math.pow(system, i++);
             if (result == Integer.MAX_VALUE) {
                 throw new NumberFormatException("Слишком большое число");
             }
@@ -58,21 +58,19 @@ public class Converter {
     // Converts from decimal to any system
     private static String decimalTo(Integer decimalNumber, Integer system) {
         String result = "";
-        try {
-            HashMap<Integer, Character> indexesAndValidChars = new HashMap<>();
-            for (Character validSymbol : VALID_CHARS)
-                indexesAndValidChars.put(VALID_CHARS.indexOf(validSymbol), validSymbol);
-            List<Character> resultNumberChars = new ArrayList<>();
-            while (decimalNumber != 0) {
-                resultNumberChars.add(indexesAndValidChars.get(decimalNumber % system));
-                decimalNumber = decimalNumber / system;
-            }
-            Collections.reverse(resultNumberChars);
-            for (Character s : resultNumberChars) result += (s.toString());
-        } catch (Exception e) {
-            System.out.println("[ERROR]:decimalTo " + e);
+        HashMap<Integer, Character> indexesAndValidChars = new HashMap<>();
+        for (Character validSymbol : VALID_CHARS)
+            indexesAndValidChars.put(VALID_CHARS.indexOf(validSymbol), validSymbol);
+        List<Character> resultNumberChars = new ArrayList<>();
+        while (decimalNumber != 0) {
+            resultNumberChars.add(indexesAndValidChars.get(decimalNumber % system));
+            decimalNumber = decimalNumber / system;
         }
-
+        Collections.reverse(resultNumberChars);
+        for (Character s : resultNumberChars) result += (s.toString());
+        if (result.equals("1111111111111111111111111111111")) {
+            throw new NumberFormatException("Слишком большое число");
+        }
         return result;
     }
 }
