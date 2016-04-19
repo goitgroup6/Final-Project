@@ -40,38 +40,19 @@ public class ConverterTest {
         assertEquals(expected1, result1);
         assertEquals(expected2, result2);
     }
+    @Test(expected = NumberFormatException.class)
+        public void toBinaryTest_DecimalNumber(){
+        String number = "99999999999999999999";
+        Integer system = 10;
 
-    @Test
-    public void toDecimal() {
-        String number1 = "1001";
-        String number2 = "1f";
-        Integer system1 = 2;
-        Integer system2 = 16;
-
-        Integer expected1 = 9;
-        Integer expected2 = 31;
-
-        Integer result1 = Converter.toDecimal(number1, system1);
-        Integer result2 = Converter.toDecimal(number2, system2);
-
-        assertEquals(expected1, result1);
-        assertEquals(expected2, result2);
+        Converter.toBinary(number, system);
     }
 
-    @Test
-    public void decimalTo() {
-        Integer decimalNumber1 = 31;
-        Integer decimalNumber2 = 10;
-        Integer system1 = 16;
-        Integer system2 = 2;
+    @Test(expected = NumberFormatException.class)
+    public void toBinaryTest_ExceptDecimalNumber() {
+        String number = "ffffffffff";
+        Integer system = 16;
 
-        String expected1 = "1f";
-        String expected2 = "1010";
-
-        String result1 = Converter.decimalTo(decimalNumber1, system1);
-        String result2 = Converter.decimalTo(decimalNumber2, system2);
-
-        assertEquals(expected1, result1);
-        assertEquals(expected2, result2);
+        Converter.toBinary(number, system);
     }
 }
