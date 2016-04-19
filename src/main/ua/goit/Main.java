@@ -4,11 +4,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Enter number & system
         try {
+            // Enter number & system
             Integer system = InputHelper.enterSystem();
             String number = InputHelper.enterNumber(system);
 
+            // Convert number to binary
             String binaryNumber = Converter.toBinary(number, system);
             System.out.println("Переводим в двоичную = " + binaryNumber);
 
@@ -20,6 +21,5 @@ public class Main {
         } catch (Exception e) {
             System.out.println("[ERROR MAIN]" + e);
         }
-        // Convert number to binary
     }
 }

@@ -69,7 +69,6 @@ public class InputHelper {
                 String symbol = enteredChar.toString().toLowerCase();
                 if (!acceptableChars.substring(0, system).contains(symbol)) result = false;
             }
-            // Check that number not consists of zeros
             int sum = 0;
             for (char character : enteredString.toCharArray()) sum += Character.getNumericValue(character);
             if (sum == 0) result = false;
