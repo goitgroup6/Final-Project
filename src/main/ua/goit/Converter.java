@@ -72,6 +72,7 @@ public class Converter {
         if (result.equals(MAX_BINARY_VALUE)) {
             throw new NumberFormatException("Слишком большое число");
         }
+        
         return result;
     }
 }
