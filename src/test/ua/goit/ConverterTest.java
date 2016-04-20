@@ -40,6 +40,7 @@ public class ConverterTest {
         assertEquals(expected1, result1);
         assertEquals(expected2, result2);
     }
+    
     @Test(expected = NumberFormatException.class)
         public void toBinaryTest_DecimalNumber(){
         String number = "99999999999999999999";
